@@ -912,6 +912,32 @@ p  { font-size: 17px; color: var(--texto-suave); }
 
 .booking-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; }
 .booking-info { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
+.director-card {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.director-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.director-copy {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.director-copy strong {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  color: var(--texto);
+}
+.director-copy span {
+  font-size: 13px;
+  color: var(--texto-suave);
+}
 .info-card { background: var(--blanco); border: 1px solid var(--borde); border-left: 3px solid var(--teal); border-radius: 10px; padding: 22px 24px; }
 .info-card h3 { font-size: 17px; margin-bottom: 6px; }
 .info-card p { font-size: 14px; }
@@ -919,3 +945,71 @@ p  { font-size: 17px; color: var(--texto-suave); }
 .info-trust h3 { color: var(--blanco); font-size: 16px; }
 .info-trust-item { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: rgba(255,255,255,0.85); }
 @media (max-width: 980px) { .booking-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ----- Compatibility hardening ----- */
+@media (max-width: 1024px) {
+  .container { width: min(1180px, 100% - 32px); }
+  .hero-inner { gap: 40px; }
+  .cta-grid { gap: 40px; }
+}
+
+@media (max-width: 640px) {
+  .container { width: min(1180px, 100% - 24px); }
+  .nav-inner { height: 64px; }
+  .hero-cta-row { flex-direction: column; align-items: stretch; }
+  .hero-cta-row .btn { width: 100%; justify-content: center; }
+  .hero-meta { flex-wrap: wrap; gap: 12px 18px; }
+  .proof-inner { gap: 18px; }
+  .proof-text { font-size: 14px; }
+  .marquee-track { gap: 28px; animation-duration: 42s; }
+  .cta-form { padding: 24px 18px; }
+  .cal-shell { padding: 22px 14px; }
+  .cal-head h3 { font-size: 18px; }
+}
+
+@media (max-width: 420px) {
+  .btn-lg { padding: 14px 18px; font-size: 16px; }
+  .phone { width: 292px; }
+  .notif { padding: 10px 12px; }
+  .price-amount { font-size: 44px; }
+  .calc-big { font-size: 40px; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-dark:hover,
+  .video-wrap:hover,
+  .case-card:hover,
+  .step:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .nav {
+    background: rgba(255,255,255,0.98);
+  }
+}
+
+@media (forced-colors: active) {
+  .btn, .cal-slot, .faq-item, .pricing-card, .case-card {
+    border: 1px solid CanvasText;
+  }
+
+  .btn-primary, .btn-dark {
+    forced-color-adjust: none;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+}

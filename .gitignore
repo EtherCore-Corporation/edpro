@@ -33,6 +33,13 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# security: local SQL/schema and legacy static templates
+supabase/schema.sql
+files/
+public/*.html
+public/styles.css
+public/app.js
+
 # vercel
 .vercel
 

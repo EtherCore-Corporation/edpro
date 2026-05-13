@@ -122,7 +122,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <span>© 2026 edpro - Clientes para empresas de mudanzas</span>
-          <span>Hecho en Espana - Atencion por WhatsApp</span>
+          <span>Hecho en Espana - j.roldan@estudiodigitalpro.com - 643168396</span>
         </div>
       </div>
     </footer>

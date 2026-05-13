@@ -242,7 +242,7 @@ export function BookingCalendar() {
           </div>
           <div className="form-group">
             <label htmlFor="b-phone">Telefono</label>
-            <input id="b-phone" name="phone" type="tel" placeholder="612 345 678" required />
+            <input id="b-phone" name="phone" type="tel" placeholder="643168396" required />
           </div>
           <div className="form-group span-2">
             <label htmlFor="b-company">Empresa de mudanzas (y ciudad)</label>

@@ -51,7 +51,7 @@ export function LeadForm({ className }: LeadFormProps) {
       </div>
       <div className="form-group">
         <label htmlFor="f-phone">Telefono</label>
-        <input id="f-phone" name="phone" type="tel" placeholder="612 345 678" required />
+        <input id="f-phone" name="phone" type="tel" placeholder="643168396" required />
       </div>
       <div className="form-group">
         <label htmlFor="f-city">Ciudad donde trabajas</label>
