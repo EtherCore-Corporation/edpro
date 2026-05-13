@@ -7,7 +7,7 @@ export default function ContactoPage() {
     <>
       <div className="urgency-bar">
         <div className="container">
-          <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}><span className="urgency-pulse" />Hoy quedan <strong>7 huecos</strong> para llamadas de presentacion</span>
+          <span className="urgency-text" style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}><span className="urgency-pulse" />Hoy quedan <strong>7 huecos</strong> para llamadas de presentacion</span>
         </div>
       </div>
       <SiteHeader />
@@ -24,18 +24,19 @@ export default function ContactoPage() {
           <div className="container">
             <div className="booking-grid">
               <aside className="booking-info">
-                <div className="director-card" data-reveal>
+                <div className="director-card">
                   <Image
                     className="director-photo"
                     src="https://msqgtohbpexxlgzainqx.supabase.co/storage/v1/object/sign/jorge/jorge_seo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iOTU4NDRhZi04ZTM1LTRkMTAtYmZiNi0wZGJiYzU1MDA3MTgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3JnZS9qb3JnZV9zZW8ucG5nIiwiaWF0IjoxNzc4Njk1MTQ5LCJleHAiOjE5MzYzNzUxNDl9.rNncw1avaAiEKWy0g7zTtrR0OTGoE6FVipggTOOmYC8"
-                    alt="Jorge Roldan, director"
+                    alt="Jorge Roldan, socio"
                     width={800}
                     height={600}
+                    unoptimized
                     loading="lazy"
                   />
                   <div className="director-copy">
                     <strong>Jorge Roldan</strong>
-                    <span>Director</span>
+                    <span>Socio</span>
                   </div>
                 </div>
                 <div className="info-card" data-reveal>

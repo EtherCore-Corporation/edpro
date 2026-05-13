@@ -8,6 +8,7 @@ type LeadFormProps = {
 
 export function LeadForm({ className }: LeadFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -15,6 +16,7 @@ export function LeadForm({ className }: LeadFormProps) {
     const formData = new FormData(form);
 
     setStatus("loading");
+    setErrorMessage(null);
 
     try {
       const payload = {
@@ -31,13 +33,17 @@ export function LeadForm({ className }: LeadFormProps) {
       });
 
       if (!res.ok) {
-        throw new Error("request_failed");
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(data?.error ?? "request_failed");
       }
 
       form.reset();
       setStatus("ok");
       setTimeout(() => setStatus("idle"), 3500);
-    } catch {
+    } catch (error) {
+      if (error instanceof Error && error.message) {
+        setErrorMessage(error.message === "request_failed" ? "No hemos podido guardar tus datos" : error.message);
+      }
       setStatus("error");
       setTimeout(() => setStatus("idle"), 3500);
     }
@@ -60,6 +66,7 @@ export function LeadForm({ className }: LeadFormProps) {
       <button type="submit" className="btn btn-primary btn-lg" disabled={status === "loading"}>
         {status === "loading" ? "Enviando..." : status === "ok" ? "Listo, te llamamos pronto" : status === "error" ? "Error, prueba otra vez" : "Quiero empezar gratis"}
       </button>
+      {errorMessage && <p className="form-note" style={{ color: "#B91C1C" }}>{errorMessage}</p>}
       <p className="form-note">Te llamamos en menos de 24 horas. Sin compromiso.</p>
     </form>
   );

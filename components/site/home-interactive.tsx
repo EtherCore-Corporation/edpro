@@ -58,7 +58,8 @@ export function UrgencyCountdown() {
 
   return (
     <span className="countdown" aria-live="polite">
-      Cierre de plazas en <b>{d}</b>d <b>{h}</b>h <b>{m}</b>m <b>{s}</b>s
+      <span className="countdown-label">Cierre de plazas en</span>
+      <b>{d}</b>d <b>{h}</b>h <b>{m}</b>m <b>{s}</b>s
     </span>
   );
 }

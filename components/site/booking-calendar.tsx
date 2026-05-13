@@ -54,6 +54,9 @@ export function BookingCalendar() {
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
+  const [takenSlots, setTakenSlots] = useState<string[]>([]);
+  const [slotsLoading, setSlotsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const availableDays = useMemo(() => buildAvailableDays(today), [today]);
 
@@ -89,7 +92,12 @@ export function BookingCalendar() {
     return cells;
   }, [availableDays, selectedDay, today, viewMonth, viewYear]);
 
-  const slotItems = selectedDay ? slotsForDay(selectedDay) : [];
+  const slotItems = selectedDay
+    ? slotsForDay(selectedDay).map((slot) => ({
+        ...slot,
+        taken: slot.taken || takenSlots.includes(slot.time),
+      }))
+    : [];
 
   const selectedDateLabel = useMemo(() => {
     if (!selectedDay) return "";
@@ -125,6 +133,23 @@ export function BookingCalendar() {
     });
   }
 
+  async function loadTakenSlots(dayIso: string) {
+    setSlotsLoading(true);
+
+    try {
+      const res = await fetch(`/api/bookings?date=${encodeURIComponent(dayIso)}`, {
+        cache: "no-store",
+      });
+      if (!res.ok) throw new Error("slots_fetch_failed");
+      const data = (await res.json()) as { takenSlots?: string[] };
+      setTakenSlots(Array.isArray(data.takenSlots) ? data.takenSlots : []);
+    } catch {
+      setTakenSlots([]);
+    } finally {
+      setSlotsLoading(false);
+    }
+  }
+
   async function submitBooking(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!selectedDay || !selectedSlot) return;
@@ -133,6 +158,7 @@ export function BookingCalendar() {
     const formData = new FormData(form);
 
     setStatus("loading");
+    setErrorMessage(null);
 
     try {
       const payload = {
@@ -149,13 +175,20 @@ export function BookingCalendar() {
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("request_failed");
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(data?.error ?? "request_failed");
+      }
 
       form.reset();
       setStatus("ok");
       setSelectedSlot(null);
+      await loadTakenSlots(selectedDay);
       setTimeout(() => setStatus("idle"), 3500);
-    } catch {
+    } catch (error) {
+      if (error instanceof Error && error.message) {
+        setErrorMessage(error.message === "request_failed" ? "No hemos podido guardar la reserva" : error.message);
+      }
       setStatus("error");
       setTimeout(() => setStatus("idle"), 3500);
     }
@@ -191,6 +224,9 @@ export function BookingCalendar() {
               if (!cell.iso || cell.disabled) return;
               setSelectedDay(cell.iso);
               setSelectedSlot(null);
+              setTakenSlots([]);
+              setErrorMessage(null);
+              void loadTakenSlots(cell.iso);
             }}
           >
             {cell.day ?? ""}
@@ -204,6 +240,7 @@ export function BookingCalendar() {
             <h4>Horas disponibles - {selectedDateLong}</h4>
             <span className="cal-timezone">Hora peninsular - Espana</span>
           </div>
+          {slotsLoading && <p className="cal-loading">Cargando disponibilidad real...</p>}
           <div className="cal-slots">
             {slotItems.map((slot) => (
               <button
@@ -252,6 +289,7 @@ export function BookingCalendar() {
         <button type="submit" className="btn btn-primary btn-lg cal-confirm-btn" disabled={!selectedSlot || status === "loading"}>
           {status === "loading" ? "Confirmando..." : status === "ok" ? "Reserva confirmada" : status === "error" ? "Error, prueba otra vez" : "Confirmar mi llamada"}
         </button>
+        {errorMessage && <p className="form-note" style={{ textAlign: "center", marginTop: "10px", color: "#B91C1C" }}>{errorMessage}</p>}
         <p className="form-note" style={{ textAlign: "center", marginTop: "14px" }}>
           Recibiras un WhatsApp de confirmacion al momento. No mandamos correos basura.
         </p>

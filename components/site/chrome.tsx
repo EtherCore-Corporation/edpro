@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 type NavItem = {
@@ -38,18 +39,19 @@ function EdproLogo({ dark = false }: { dark?: boolean }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="nav">
       <div className="container nav-inner">
-        <Link href="/" className="logo" aria-label="edpro inicio">
+        <Link href="/" className="logo" aria-label="edpro inicio" onClick={() => setMenuOpen(false)}>
           <EdproLogo />
         </Link>
         <nav className="nav-links" aria-label="Principal">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
-              <Link key={item.href} href={item.href} className={isActive ? "active" : undefined}>
+              <Link key={item.href} href={item.href} className={isActive ? "active" : undefined} onClick={() => setMenuOpen(false)}>
                 {item.label}
               </Link>
             );
@@ -58,10 +60,39 @@ export function SiteHeader() {
         <Link href="/contacto" className="btn btn-primary no-mobile">
           Quiero clientes
         </Link>
-        <Link href="/contacto" className="btn btn-primary mobile-only" style={{ padding: "10px 16px", fontSize: "14px" }}>
-          Empezar
-        </Link>
+
+        <div className="nav-mobile">
+          <button
+            type="button"
+            className={menuOpen ? "hamburger open" : "hamburger"}
+            aria-label="Abrir menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((value) => !value)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
+
+      {menuOpen && (
+        <div className="mobile-menu" role="dialog" aria-label="Menu movil">
+          <div className="container mobile-menu-inner">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link key={item.href} href={item.href} className={isActive ? "active" : undefined} onClick={() => setMenuOpen(false)}>
+                  {item.label}
+                </Link>
+              );
+            })}
+            <Link href="/contacto" className="btn btn-primary" style={{ width: "100%", justifyContent: "center" }} onClick={() => setMenuOpen(false)}>
+              Quiero clientes
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

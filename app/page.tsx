@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { LiveFeed, RevenueCalculator, UrgencyCountdown } from "@/components/site/home-interactive";
 import { LeadForm } from "@/components/site/lead-form";
 import { SiteFooter, SiteHeader } from "@/components/site/chrome";
@@ -8,7 +9,7 @@ export default function Home() {
     <>
       <div className="urgency-bar" role="region" aria-label="Plazas disponibles">
         <div className="container">
-          <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
+          <span className="urgency-text" style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
             <span className="urgency-pulse" />Solo aceptamos <strong>3 empresas nuevas</strong> esta semana en cada provincia
           </span>
           <span className="sep">-</span>
@@ -68,6 +69,27 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-tight" style={{ paddingTop: "20px", background: "var(--fondo)" }}>
+          <div className="container">
+            <div className="director-highlight" data-reveal>
+              <Image
+                className="director-highlight-photo"
+                src="https://msqgtohbpexxlgzainqx.supabase.co/storage/v1/object/sign/jorge/jorge_seo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iOTU4NDRhZi04ZTM1LTRkMTAtYmZiNi0wZGJiYzU1MDA3MTgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3JnZS9qb3JnZV9zZW8ucG5nIiwiaWF0IjoxNzc4Njk1MTQ5LCJleHAiOjE5MzYzNzUxNDl9.rNncw1avaAiEKWy0g7zTtrR0OTGoE6FVipggTOOmYC8"
+                alt="Jorge Roldan, socio"
+                width={560}
+                height={560}
+                unoptimized
+                loading="lazy"
+              />
+              <div>
+                <span className="eyebrow"><span className="dot" />Tu socio estrategico</span>
+                <h3 style={{ marginTop: "14px", marginBottom: "8px" }}>Hablaras con Jorge Roldan, socio de la empresa</h3>
+                <p style={{ fontSize: "15px" }}>Te atiende personalmente para revisar tu zona y darte un plan realista.</p>
               </div>
             </div>
           </div>
