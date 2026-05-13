@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap");
-
 /* edpro — sistema de estilos compartido */
 
 :root {
@@ -909,13 +907,3 @@ p  { font-size: 17px; color: var(--texto-suave); }
   .no-mobile { display: none; }
   .mobile-only { display: inline-flex; }
 }
-
-.booking-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; }
-.booking-info { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
-.info-card { background: var(--blanco); border: 1px solid var(--borde); border-left: 3px solid var(--teal); border-radius: 10px; padding: 22px 24px; }
-.info-card h3 { font-size: 17px; margin-bottom: 6px; }
-.info-card p { font-size: 14px; }
-.info-trust { background: var(--azul); color: var(--blanco); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
-.info-trust h3 { color: var(--blanco); font-size: 16px; }
-.info-trust-item { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: rgba(255,255,255,0.85); }
-@media (max-width: 980px) { .booking-grid { grid-template-columns: 1fr; gap: 32px; } }

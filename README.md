@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# edpro web (Next.js + TypeScript + Supabase)
 
-## Getting Started
+Web comercial para edpro implementada en App Router con TypeScript y React.
 
-First, run the development server:
+## Stack
 
-```bash
+- Next.js 16 (App Router)
+- React 19
+- TypeScript estricto
+- Supabase (persistencia de leads y reservas)
+- Zod (validacion de payloads en API)
+
+## Rutas
+
+- /
+- /como-funciona
+- /precios
+- /casos
+- /contacto
+
+## API (server-side)
+
+- POST /api/leads
+- POST /api/bookings
+
+Ambas rutas validan entrada con Zod y escriben en Supabase usando Service Role solo en servidor.
+
+## Variables de entorno
+
+Copia .env.example a .env.local y rellena valores reales:
+
+- NEXT_PUBLIC_SUPABASE_URL
+- NEXT_PUBLIC_SUPABASE_ANON_KEY
+- SUPABASE_SERVICE_ROLE_KEY
+
+## Base de datos Supabase
+
+Ejecuta el SQL de supabase/schema.sql en el SQL editor de Supabase.
+
+Esto crea:
+
+- public.leads
+- public.bookings
+
+Tambien activa RLS y bloquea acceso anonimo directo (las inserciones pasan por API de Next).
+
+## Desarrollo
+
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Calidad
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+npm run lint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Produccion
 
-## Learn More
+1. Configura variables de entorno en tu proveedor (Vercel, Fly, etc.).
+2. Ejecuta schema.sql en Supabase antes del primer deploy.
+3. Despliega con:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run build
+npm run start

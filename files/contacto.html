@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Reservar llamada — edpro</title>
+<meta name="description" content="Elige día y hora. Te llamamos. 15 minutos. Sin compromiso."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;700&amp;family=DM+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"/>
+<style>
+  .booking-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; }
+  .booking-info { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
+  .info-card { background: var(--blanco); border: 1px solid var(--borde); border-left: 3px solid var(--teal); border-radius: 10px; padding: 22px 24px; }
+  .info-card h3 { font-size: 17px; margin-bottom: 6px; }
+  .info-card p { font-size: 14px; }
+  .info-card a.link-anim { margin-top: 8px; display: inline-flex; }
+  .info-trust { background: var(--azul); color: var(--blanco); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .info-trust h3 { color: var(--blanco); font-size: 16px; }
+  .info-trust-item { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: rgba(255,255,255,0.85); }
+  .info-trust-item svg { color: var(--teal-claro); flex-shrink: 0; margin-top: 2px; }
+  @media (max-width: 980px) { .booking-grid { grid-template-columns: 1fr; gap: 32px; } }
+</style>
+<script type='text/javascript' nonce='G7XGPKTYo2yWfuvxxTIkPA==' src='https://claude.ai/K1dKdNd1DL7bKby1cQp4Qe2sIuHfvPS73BNeevoDsvCbljtxhU5TLzzR53e9OkRkvkVKuvaf2qfYo1EasPF_rrMtvUc_jAJ5-CfCdTYyTZsNmcOEKdCHCJCuFJDAfsf__hpBwy4hmMVYPY6tWzEVJpt7Yr2tzKytlK_7oj_BhL9N8kFcUnK_oZFou6AuYjQor2LNzW0xWLkpqANd3wgBbrFj_5W6BYXvWucbG-dN-E2wUoyp8NoLwu_BjWKsFlDgMkB2OCePvcVOuH7xFsOCJSCpb95FaDcd6yEwlQqruWcZRxcGaa6Hq9rsi9-61EKYKRfP3q9BWo_Oeo8QhHxR1a-XyDzlgH4-D8pbYTrPCuVkl8aYdbrCbl8TiY3ugITCKcUKYeHBPV75NHVl3A3IFXW6jejyi2_xEMNZVbiSOYNMWHntiw0G2T2umTg_CHZ-2nb81R_MMjhKmQe_MSnAg-gIEmHmWJ46KF-XhOzveAqbyT98cnrV3ceK0xhk6_NldYPy_JC1CdPGLRONoFPThoih-pP01gO695IgylRrFseHHZYkdSNI'></script></head>
+<body data-screen-label="05 Contacto">
+
+<div class="urgency-bar">
+  <div class="container">
+    <span style="display:inline-flex;align-items:center;gap:10px;"><span class="urgency-pulse"></span>Hoy quedan <strong>7 huecos</strong> para llamadas de presentación</span>
+    <span class="sep">·</span>
+    <span class="countdown" id="urgency-cd">Cierre del día en <b id="cd-d">00</b>d <b id="cd-h">07</b>h <b id="cd-m">12</b>m <b id="cd-s">35</b>s</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo" data-logo="light" aria-label="edpro — inicio"></a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="precios.html">Precios</a>
+      <a href="casos.html">Casos reales</a>
+    </nav>
+    <a href="contacto.html" class="btn btn-primary no-mobile">Quiero clientes</a>
+    <a href="contacto.html" class="btn btn-primary mobile-only" style="padding: 10px 16px; font-size: 14px;">Empezar</a>
+  </div>
+</header>
+
+<main>
+
+<section class="page-header">
+  <div class="container">
+    <span class="eyebrow"><span class="dot"></span>Reserva tu llamada</span>
+    <h1 style="margin-top: 16px;">Elige día. Elige hora. Te llamamos.</h1>
+    <p class="lead" style="margin-top: 20px;">15 minutos. Sin guion comercial. Te explicamos qué haríamos para tu empresa y te decimos el precio para tu zona. Si no encaja, no pasa nada.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="booking-grid">
+
+      <!-- INFO LATERAL -->
+      <aside class="booking-info">
+        <div class="info-card" data-reveal="">
+          <h3>¿Qué pasa en la llamada?</h3>
+          <p>Te llama Carlos o Lucía. Te preguntan por tu empresa, tu zona, cuántas furgonetas tienes. Te explican qué haríamos y el coste estimado. 15 minutos.</p>
+        </div>
+        <div class="info-card" data-reveal="">
+          <h3>¿Y si no me convence?</h3>
+          <p>No pasa absolutamente nada. Cuelgas, te quedas la información, y si algún día te interesa, vuelves. No vendemos a presión.</p>
+        </div>
+        <div class="info-card" data-reveal="">
+          <h3>Prefieres WhatsApp</h3>
+          <p>Si te apañas mejor escribiendo, mándanos un mensaje. Contesta una persona, no un robot.</p>
+          <a href="#" class="link-anim">+34 600 00 00 00 →</a>
+        </div>
+
+        <div class="info-trust" data-reveal="">
+          <h3>Lo que prometemos</h3>
+          <div class="info-trust-item">
+            <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Puntualidad: te llamamos en el minuto exacto.
+          </div>
+          <div class="info-trust-item">
+            <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Cero tecnicismos. Hablamos como tú.
+          </div>
+          <div class="info-trust-item">
+            <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            No te volvemos a llamar si dices que no.
+          </div>
+          <div class="info-trust-item">
+            <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Llamamos desde un número español. No spam.
+          </div>
+        </div>
+      </aside>
+
+      <!-- CALENDARIO -->
+      <div class="cal-shell" id="cal-shell" data-reveal="">
+        <div class="cal-head">
+          <h3>Reserva tu llamada gratis</h3>
+          <div class="cal-month">
+            <button type="button" class="cal-nav" data-cal-prev="" aria-label="Mes anterior">
+              <svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span data-cal-month="">Mayo 2026</span>
+            <button type="button" class="cal-nav" data-cal-next="" aria-label="Mes siguiente">
+              <svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="cal-weekdays">
+          <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+        </div>
+        <div class="cal-days" data-cal-days=""></div>
+
+        <div class="cal-slots-wrap" data-cal-slots-head="" style="display:none;" id="cal-slots-wrap">
+          <div class="cal-slots-head">
+            <h4>Horas disponibles</h4>
+            <span class="cal-timezone">Hora peninsular · España</span>
+          </div>
+          <div class="cal-slots" data-cal-slots=""></div>
+        </div>
+
+        <div class="cal-summary empty" data-cal-summary="">
+          <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Elige un día para ver las horas libres.
+        </div>
+
+        <form data-cal-form="">
+          <div class="cal-form-fields" data-cal-fields="">
+            <div class="form-group">
+              <label for="b-name">Nombre</label>
+              <input id="b-name" name="name" type="text" placeholder="Tu nombre" required=""/>
+            </div>
+            <div class="form-group">
+              <label for="b-phone">Teléfono</label>
+              <input id="b-phone" name="phone" type="tel" placeholder="612 345 678" required=""/>
+            </div>
+            <div class="form-group span-2">
+              <label for="b-company">Empresa de mudanzas (y ciudad)</label>
+              <input id="b-company" name="company" type="text" placeholder="Mudanzas García · Sevilla" required=""/>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg cal-confirm-btn">
+            Confirmar mi llamada
+            <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <p class="form-note" style="text-align:center;margin-top:14px;">Recibirás un WhatsApp de confirmación al momento. No mandamos correos basura.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section faq" style="background: var(--fondo);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Por si te queda alguna duda</span>
+      <h2>Lo que más nos preguntan antes de reservar</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open="">
+        <summary>¿Me vais a llenar de llamadas de comerciales?</summary>
+        <p>No. Una sola llamada para conocernos. Si te interesa, seguimos. Si no, no te volvemos a molestar.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Tengo que mandar mis datos bancarios para empezar?</summary>
+        <p>No. El primer mes es gratis. Para empezar solo necesitamos hablar contigo.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Trabajo en una zona muy concreta. ¿Vale igual?</summary>
+        <p>Sí. Cuanto más pequeña es la zona, mejor funcionamos. Menos competencia en internet.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿La web es realmente mía?</summary>
+        <p>Sí. Si decides parar el servicio, la web sigue siendo tuya y te explicamos cómo llevártela.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo" data-logo="dark" aria-label="edpro"></a>
+        <p class="footer-tag">Clientes para empresas de mudanzas. La forma sencilla de tener tu teléfono sonando.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="como-funciona.html">Cómo funciona</a></li>
+          <li><a href="precios.html">Precios</a></li>
+          <li><a href="casos.html">Casos reales</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="contacto.html">Soporte WhatsApp</a></li>
+          <li><a href="casos.html">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Aviso legal</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 edpro — Clientes para empresas de mudanzas</span>
+      <span>Hecho en España · Atención por WhatsApp</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

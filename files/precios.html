@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Precios — edpro</title>
+<meta name="description" content="Empieza gratis. Pagas solo cuando ves que llegan presupuestos. Sin cuotas fijas, sin permanencia."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;700&amp;family=DM+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"/>
+<style>
+  .volume-table {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+  .volume-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+    align-items: center;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--borde);
+    gap: 16px;
+  }
+  .volume-row:last-child { border-bottom: none; }
+  .volume-row.head {
+    background: var(--fondo);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .volume-row.highlight { background: rgba(26,125,111,0.04); }
+  .volume-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 18px; color: var(--azul); letter-spacing: -0.01em; }
+  .volume-val { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 20px; color: var(--texto); letter-spacing: -0.01em; }
+  .volume-val span { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 13px; color: var(--texto-suave); margin-left: 4px; }
+  .volume-tag { font-size: 12px; color: var(--teal); font-weight: 500; }
+  @media (max-width: 760px) {
+    .volume-row { grid-template-columns: 1fr 1fr; padding: 14px 18px; font-size: 14px; }
+    .volume-row.head { display: none; }
+    .volume-row > *:nth-child(1) { grid-column: 1 / -1; padding-bottom: 6px; }
+  }
+
+  .compare {
+    margin-top: 48px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .compare-col {
+    background: var(--blanco); border: 1px solid var(--borde); border-radius: 12px;
+    padding: 32px;
+  }
+  .compare-col.bad { background: var(--fondo); border-color: transparent; }
+  .compare-col h3 { margin-bottom: 18px; }
+  .compare-col h3.bad { color: var(--texto-suave); }
+  .compare-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .compare-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; }
+  .compare-list svg { flex-shrink: 0; margin-top: 3px; }
+  .compare-list .good { color: var(--teal); }
+  .compare-list .bad-icon { color: #C77B7B; }
+  @media (max-width: 760px) { .compare { grid-template-columns: 1fr; } }
+</style>
+<script type='text/javascript' nonce='i3MiAXfasWOZ0pev+4rbNQ==' src='https://claude.ai/G0kTZ-6KCziVr4jqgBj-wg9DAtqBG2SzKSRmMmei3c-eZkoV8zofap6-QrE7rn6QU0ppP6ozZNR7xAnoYTgfJRxD9WdkvanmVa9lZnM8kG20r90p-VtNEi7N9Z1TiDMFBDn11AER5jIjDFXtRx3JUK4IuwIMKLFlPwfclYi2CqH6RAh8KsBmmN_A_0xqbliT_iS5yBYYo7MThjmmveoOBACy95CTzkUN8thAwBCmXrtxfcMdDQyPiirpR64JoOkhcBWsVfsRrPjaCXC7CcVZzH6tSzU35zNJ_9vqYUv9wSPRB8FbOyrrXwvaACAXxLECJZX7kR985vbWJRWL2CaiBclUgc25sVOulPGC4E_nHB-_utvwlc3gNN9LC1p-dt2HJGUS_bk8d7Fn_UyuP9_tDqmbjYZHeFAiPba8J3eKEPVSvJ-TuCbTm_JwM3ureUaqRF7fuur_wicJU09IeSvudrATY5gULSTCELLk8dcLzh-fWBvAsju9XftQwxgNKs2LsmjDf3mjYzeg2F8kY7ASnB1bpMeKz7sntJRV7zsBPn1x8R1qpNs'></script></head>
+<body data-screen-label="03 Precios">
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo" data-logo="light" aria-label="edpro — inicio"></a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="precios.html" class="active">Precios</a>
+      <a href="casos.html">Casos reales</a>
+    </nav>
+    <a href="contacto.html" class="btn btn-primary no-mobile">Quiero clientes</a>
+    <a href="contacto.html" class="btn btn-primary mobile-only" style="padding: 10px 16px; font-size: 14px;">Empezar</a>
+  </div>
+</header>
+
+<main>
+
+<section class="page-header">
+  <div class="container">
+    <span class="eyebrow"><span class="dot"></span>Precios honestos</span>
+    <h1 style="margin-top: 16px;">El primer mes es gratis. El segundo, tú decides.</h1>
+    <p class="lead" style="margin-top: 20px;">Lo decimos así de claro porque así de claro es. No hay cuotas mensuales sorpresa, ni packs con letra pequeña, ni "te lo explico cuando firmes".</p>
+  </div>
+</section>
+
+<section class="section pricing-section" style="padding-top: 0;">
+  <div class="container">
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="price-label">Mes 1 · Prueba real</div>
+        <div class="price-amount">0€<sub>completos</sub></div>
+        <div class="price-sub">Te montamos la web, ponemos los anuncios en marcha y te llegan presupuestos. Sin sacar la tarjeta.</div>
+        <ul class="pricing-list">
+          <li><svg class="check" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Web profesional incluida</li>
+          <li><svg class="check" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Anuncios activos en tu zona</li>
+          <li><svg class="check" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Avisos por WhatsApp en directo</li>
+          <li><svg class="check" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Si no funciona, no pagas. Te quedas la web.</li>
+        </ul>
+        <a href="contacto.html" class="btn btn-dark">Empezar gratis</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <span class="ribbon">Lo más elegido</span>
+        <div class="price-label">Mes 2 en adelante</div>
+        <div class="price-amount">Tú eliges<sub>volumen</sub></div>
+        <div class="price-sub">Decides cuántos presupuestos quieres recibir al mes. Subes en temporada alta, bajas en agosto. Tú mandas.</div>
+        <ul class="pricing-list">
+          <li><svg class="check" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pagas por presupuesto, no por suerte</li>
+          <li><svg class="check" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Si el cliente no contesta, no cuenta</li>
+          <li><svg class="check" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Subes o bajas el volumen cuando quieras</li>
+          <li><svg class="check" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sin contrato. Paras y ya está.</li>
+        </ul>
+        <a href="contacto.html" class="btn btn-primary">Habla con nosotros</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" style="background: var(--fondo); padding-top: 0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Volúmenes orientativos</span>
+      <h2>Una idea del precio según lo que necesites.</h2>
+      <p class="lead">Cada empresa es distinta. Estos son los rangos típicos para que te hagas una idea antes de hablar con nosotros.</p>
+    </div>
+
+    <div class="volume-table">
+      <div class="volume-row head">
+        <span>Plan</span>
+        <span>Presupuestos/mes</span>
+        <span>Coste por presupuesto</span>
+        <span>Para quién es</span>
+      </div>
+      <div class="volume-row">
+        <span class="volume-name">Empezar</span>
+        <span class="volume-val">10–20<span>/mes</span></span>
+        <span class="volume-val">desde 12€<span>/uno</span></span>
+        <span class="volume-tag">Empresas pequeñas o nuevas</span>
+      </div>
+      <div class="volume-row highlight">
+        <span class="volume-name">Crecer</span>
+        <span class="volume-val">30–60<span>/mes</span></span>
+        <span class="volume-val">desde 9€<span>/uno</span></span>
+        <span class="volume-tag">Lo más habitual</span>
+      </div>
+      <div class="volume-row">
+        <span class="volume-name">Saturar</span>
+        <span class="volume-val">80+<span>/mes</span></span>
+        <span class="volume-val">desde 7€<span>/uno</span></span>
+        <span class="volume-tag">Equipos con varias furgonetas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: var(--blanco);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>La diferencia</span>
+      <h2>Lo que otros llaman "agencia". Y lo que hacemos nosotros.</h2>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col bad">
+        <h3 class="bad" style="color: var(--texto-suave);">Una agencia normal</h3>
+        <ul class="compare-list">
+          <li><svg class="bad-icon" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Cuota mensual fija, llegue trabajo o no</li>
+          <li><svg class="bad-icon" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Contrato de 6 o 12 meses</li>
+          <li><svg class="bad-icon" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Hablan de "leads", "CTR", "embudos"</li>
+          <li><svg class="bad-icon" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>La web la pagas aparte</li>
+          <li><svg class="bad-icon" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Informes que no entiendes</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <h3 style="color: var(--azul);">edpro</h3>
+        <ul class="compare-list">
+          <li><svg class="good" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pagas solo por presupuestos reales</li>
+          <li><svg class="good" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sin contrato. Paras cuando quieras</li>
+          <li><svg class="good" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Hablamos como tú: clientes, presupuestos, mudanzas</li>
+          <li><svg class="good" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>La web entra gratis. Y es tuya.</li>
+          <li><svg class="good" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Resumen semanal por WhatsApp en cristiano</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-final">
+  <div class="container">
+    <div style="text-align:center; max-width: 720px; margin: 0 auto;">
+      <h2 style="color: var(--blanco);">¿Pedimos un café y hablamos?</h2>
+      <p class="lead" style="color: rgba(255,255,255,0.75); margin-top: 16px; margin-bottom: 28px;">Te llamamos, te decimos qué precio tendría para tu zona y decides tú. Sin compromiso.</p>
+      <a href="contacto.html" class="btn btn-primary btn-lg">Ver mi precio</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo" data-logo="dark" aria-label="edpro"></a>
+        <p class="footer-tag">Clientes para empresas de mudanzas. La forma sencilla de tener tu teléfono sonando.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="como-funciona.html">Cómo funciona</a></li>
+          <li><a href="precios.html">Precios</a></li>
+          <li><a href="casos.html">Casos reales</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="contacto.html">Soporte WhatsApp</a></li>
+          <li><a href="casos.html">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Aviso legal</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 edpro — Clientes para empresas de mudanzas</span>
+      <span>Hecho en España · Atención por WhatsApp</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

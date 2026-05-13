@@ -1,65 +1,182 @@
-import Image from "next/image";
+import Link from "next/link";
+import { LiveFeed, RevenueCalculator, UrgencyCountdown } from "@/components/site/home-interactive";
+import { LeadForm } from "@/components/site/lead-form";
+import { SiteFooter, SiteHeader } from "@/components/site/chrome";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <div className="urgency-bar" role="region" aria-label="Plazas disponibles">
+        <div className="container">
+          <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
+            <span className="urgency-pulse" />Solo aceptamos <strong>3 empresas nuevas</strong> esta semana en cada provincia
+          </span>
+          <span className="sep">-</span>
+          <UrgencyCountdown />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      </div>
+
+      <SiteHeader />
+
+      <main>
+        <section className="hero">
+          <div className="hero-blob" aria-hidden="true" />
+          <div className="container hero-inner">
+            <div className="hero-text">
+              <span className="eyebrow"><span className="dot" />Mudanzas - Espana</span>
+              <h1>Tu telefono suena.<br />Son clientes pidiendo presupuesto.</h1>
+              <p className="lead" style={{ marginTop: "20px", maxWidth: "540px" }}>
+                Conseguimos personas que quieren mudarse y las mandamos directamente a tu negocio. La web es gratis. El primer mes tambien.
+              </p>
+              <div className="hero-cta-row">
+                <Link href="/contacto" className="btn btn-primary btn-lg">Empieza gratis</Link>
+                <Link href="/como-funciona" className="btn btn-ghost">Ver como funciona</Link>
+              </div>
+              <div className="hero-meta">
+                <div className="hero-meta-item">Sin contrato</div>
+                <div className="hero-meta-item">Sin permanencia</div>
+                <div className="hero-meta-item">Pagas solo si funciona</div>
+              </div>
+            </div>
+
+            <div className="phone-wrap">
+              <div className="phone">
+                <div className="phone-screen">
+                  <div className="phone-time">9:41 - martes 12 mayo</div>
+                  <div className="notif">
+                    <div className="notif-icon">W</div>
+                    <div className="notif-body">
+                      <div className="notif-head"><span className="notif-app">WhatsApp - edpro</span><span className="notif-time">ahora</span></div>
+                      <div className="notif-title">Nuevo presupuesto</div>
+                      <div className="notif-msg">Mudanza Madrid - Barcelona, 3 dormitorios. Telefono incluido.</div>
+                    </div>
+                  </div>
+                  <div className="notif">
+                    <div className="notif-icon">W</div>
+                    <div className="notif-body">
+                      <div className="notif-head"><span className="notif-app">WhatsApp - edpro</span><span className="notif-time">9:38</span></div>
+                      <div className="notif-title">Nuevo presupuesto</div>
+                      <div className="notif-msg">Piso 80m2 en Valencia, mudanza local urgente.</div>
+                    </div>
+                  </div>
+                  <div className="notif">
+                    <div className="notif-icon">W</div>
+                    <div className="notif-body">
+                      <div className="notif-head"><span className="notif-app">WhatsApp - edpro</span><span className="notif-time">9:15</span></div>
+                      <div className="notif-title">Nuevo presupuesto</div>
+                      <div className="notif-msg">Oficina, traslado en Sevilla. Quiere precio hoy.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="spots-strip">
+          <div className="container spots-row">
+            <div className="spots-text">
+              <span className="spots-live"><span className="pulse" />En directo</span>
+              <span>- Esta semana <strong>11 de 14</strong> plazas ocupadas en Espana</span>
+            </div>
+            <div className="spots-track" aria-hidden="true"><div className="spots-fill" /></div>
+            <div className="spots-live"><strong style={{ color: "var(--teal)", fontFamily: "Sora, sans-serif" }}>3 plazas</strong>&nbsp;libres</div>
+          </div>
+        </section>
+
+        <section className="section-tight" style={{ background: "var(--blanco)" }}>
+          <div className="container">
+            <div className="section-head" data-reveal>
+              <span className="eyebrow"><span className="dot" />2 minutos</span>
+              <h2>Ve como funciona en video</h2>
+              <p className="lead">Sin tecnicismos. Una empresa real contando como le llegan los presupuestos cada manana.</p>
+            </div>
+            <div style={{ maxWidth: "900px", margin: "48px auto 0" }} data-reveal>
+              <div className="video-wrap" role="button" aria-label="Reproducir video de demostracion">
+                <div className="video-grid" aria-hidden="true" />
+                <span className="video-badge"><span className="live-dot" />Caso real</span>
+                <span className="video-duration">02:14</span>
+                <div className="video-play">
+                  <div className="video-play-btn">▶</div>
+                  <div className="video-caption">Caso real: como monte la web y empezaron a llegar mudanzas</div>
+                  <div className="video-sub">Manolo Garcia - Mudanzas Garcia, Sevilla</div>
+                </div>
+              </div>
+            </div>
+            <LiveFeed />
+          </div>
+        </section>
+
+        <section className="proof-bar">
+          <div className="container proof-inner">
+            <div className="proof-text"><strong>+47 empresas</strong> de mudanzas en Espana ya reciben presupuestos cada semana</div>
+            <div className="marquee" aria-hidden="true">
+              <div className="marquee-track">
+                <span className="marquee-item">Madrid</span><span className="marquee-item">Barcelona</span><span className="marquee-item">Valencia</span><span className="marquee-item">Sevilla</span><span className="marquee-item">Bilbao</span><span className="marquee-item">Malaga</span><span className="marquee-item">Zaragoza</span><span className="marquee-item">Murcia</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="section-head">
+              <span className="eyebrow"><span className="dot" />Asi de sencillo</span>
+              <h2>Tres pasos. Sin tecnicismos.</h2>
+              <p className="lead">No hace falta que entiendas de internet. Nosotros hacemos el trabajo digital, tu das los presupuestos.</p>
+            </div>
+            <div className="steps">
+              <article className="step"><span className="step-num">1</span><div className="step-icon">1</div><h3>Te hacemos la web gratis</h3><p>Disenamos tu web con tus colores, tu logo y tus servicios. Sin coste.</p></article>
+              <article className="step"><span className="step-num">2</span><div className="step-icon">2</div><h3>Captamos a quien busca mudarse</h3><p>Aparecemos donde la gente busca mudanzas y piden informacion.</p></article>
+              <article className="step"><span className="step-num">3</span><div className="step-icon">3</div><h3>Te llegan sus datos para presupuestar</h3><p>Recibes aviso por WhatsApp con nombre, telefono y detalles.</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section className="section calc-section" id="calculadora">
+          <div className="container">
+            <div className="section-head" data-reveal>
+              <span className="eyebrow"><span className="dot" />Calculadora</span>
+              <h2>Cuanto puedes facturar al mes con edpro</h2>
+              <p className="lead">Mueve las barras segun tu negocio.</p>
+            </div>
+            <RevenueCalculator />
+          </div>
+        </section>
+
+        <section className="section testimonials">
+          <div className="container">
+            <div className="section-head">
+              <span className="eyebrow on-dark"><span className="dot" />Lo que nos dicen</span>
+              <h2>Empresas reales. Mudanzas reales.</h2>
+            </div>
+            <div className="testi-grid">
+              <article className="testi" data-reveal><div className="testi-stars">★★★★★</div><blockquote className="testi-quote">Antes esperaba que me llamaran. Ahora me llegan 3 o 4 al dia pidiendo precio.</blockquote><div className="testi-author"><div className="testi-avatar">MG</div><div className="testi-meta"><strong>Manolo Garcia</strong><span>Mudanzas Garcia - Sevilla</span></div></div></article>
+              <article className="testi" data-reveal><div className="testi-stars">★★★★★</div><blockquote className="testi-quote">Pensaba que era otra agencia mas. Llevo 8 meses y no he firmado nada. Funciona.</blockquote><div className="testi-author"><div className="testi-avatar">JR</div><div className="testi-meta"><strong>Javier Ruiz</strong><span>Transportes Ruiz - Madrid</span></div></div></article>
+              <article className="testi" data-reveal><div className="testi-stars">★★★★★</div><blockquote className="testi-quote">Mi hijo lleva el WhatsApp y yo doy presupuestos. Mas facil imposible.</blockquote><div className="testi-author"><div className="testi-avatar">AM</div><div className="testi-meta"><strong>Antonio Martin</strong><span>Mudanzas Martin - Valencia</span></div></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section className="section cta-final">
+          <div className="container">
+            <div className="section-head" style={{ textAlign: "left", margin: 0 }}>
+              <span className="eyebrow on-dark"><span className="dot" />Empieza esta semana</span>
+              <h2 style={{ marginTop: "16px" }}>Cuantos presupuestos quieres recibir esta semana?</h2>
+            </div>
+            <div className="cta-grid">
+              <div className="cta-points">
+                <div className="cta-point"><div><strong>Te llamamos en 24 horas</strong><span>Una persona real, no un robot.</span></div></div>
+                <div className="cta-point"><div><strong>Sin compromiso</strong><span>Si no te convence, no pasa nada.</span></div></div>
+                <div className="cta-point"><div><strong>Web lista en 7 dias</strong><span>Tu nos cuentas, nosotros lo montamos todo.</span></div></div>
+              </div>
+              <LeadForm className="cta-form" />
+            </div>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <SiteFooter />
+    </>
   );
 }
